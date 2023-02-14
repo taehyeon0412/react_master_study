@@ -4,30 +4,25 @@ const Father = styled.div`
   display: flex;
 `;
 
-const BoxOne = styled.div`
-  background-color: teal;
+const Box = styled.div`
+  background-color: ${(props) => props.bgColor};
   width: 100px;
   height: 100px;
 `;
 
-const BoxTwo = styled.div`
-  background-color: green;
-  width: 100px;
-  height: 100px;
+const Circle = styled(Box)`
+  // Box에 있는 styled을 적용한다는 뜻
+  border-radius: 50px;
 `;
 
-const Text = styled.span`
-  color: white;
-`;
 /* style 컴포넌트를 쓸 때에는 백틱 ``을 사용한다 */
+/* props를 이용하여 코드를 간소화 할 수 있다 */
 
 function App() {
   return (
     <Father>
-      <BoxOne>
-        <Text>Hello</Text>
-      </BoxOne>
-      <BoxTwo />
+      <Box bgColor="teal" />
+      <Circle bgColor="green" />
     </Father>
   );
 }
