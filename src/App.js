@@ -2,45 +2,35 @@ import styled, { keyframes } from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
-const boxAni = keyframes`
-  0% {
-    transform:rotate(0deg); //deg = degree(각도)
-    border-radius:0px;
-  }
-  50% {
-    border-radius:100px;
-  }
-  100% {
-    transform:rotate(360deg);
-    border-radius:0px;
-  }
-
+const Emoji = styled.span`
+  font-size: 30px;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Box = styled.div`
   height: 200px;
   width: 200px;
   background-color: green;
-  animation: ${boxAni} 2s linear infinite;
   display: flex;
   justify-content: center;
   align-items: center;
-  span {
-    font-size: 30px;
-    &:hover {
-      font-size: 60px;
-    }
-  } //Box안에 있는 개체를 컴포넌트 스타일 안에 쓸 수 있다.
-  //&는 바로위의 태그를 뜻함 span:hover 대신 &:hover로 짧게 쓸 수 있다.
+  ${Emoji}:hover {
+    font-size: 80px;
+  }
 `;
 
 function App() {
   return (
     <Wrapper>
       <Box>
-        <span>😂</span>
+        <Emoji as="bin">Hello</Emoji>
       </Box>
     </Wrapper>
   );
@@ -59,5 +49,7 @@ attrs = Attributes(속성) 줄임말
 */
 
 /* 스타일컴포넌트에서 애니메이션을 쓰려면 import에 {keyframes}를 추가한다
-
  */
+
+/* ${(props) => props.theme.textColor}; 처럼
+props를 이용하여 index에 있는 theme(테마) 속성을 이용할 수 있다. */
