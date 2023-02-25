@@ -30,7 +30,7 @@ function App() {
   return (
     <Wrapper>
       <Box>
-        <Emoji as="bin">Hello</Emoji>
+        <Emoji>Hello</Emoji>
       </Box>
     </Wrapper>
   );
