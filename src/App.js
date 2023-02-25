@@ -51,5 +51,5 @@ attrs = Attributes(속성) 줄임말
 /* 스타일컴포넌트에서 애니메이션을 쓰려면 import에 {keyframes}를 추가한다
  */
 
-/* ${(props) => props.theme.textColor}; 처럼
+/* ${(props) => props.theme.textColor}; 처럼 
 props를 이용하여 index에 있는 theme(테마) 속성을 이용할 수 있다. */
