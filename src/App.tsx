@@ -1,11 +1,31 @@
 import styled, { keyframes } from "styled-components";
-import Circle from "./Circle";
+import { useState } from "react";
 
 function App() {
+  const [value, setValue] = useState("");
+  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { value },
+    } = event;
+    setValue(value);
+  };
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(`hello ${value}`);
+  };
+
   return (
     <div>
-      <Circle borderColor="green" bgColor="teal" />
-      <Circle text="im here" bgColor="tomato" />
+      <form onSubmit={onSubmit}>
+        <input
+          value={value}
+          onChange={onChange}
+          type="text"
+          placeholder="username"
+        />
+        <button>Log in</button>
+      </form>
     </div>
   );
 }
@@ -27,3 +47,20 @@ attrs = Attributes(속성) 줄임말
 
 /* ${(props) => props.theme.textColor}; 처럼 
 props를 이용하여 index에 있는 theme(테마) 속성을 이용할 수 있다. */
+
+/* const value = event.currentTarget.value 이다
+이것을 
+const {currentTarget: {value}} = event 로 바꿔 쓸 수있다.
+이렇게 쓰는 이유 = >  한꺼번에 많은 것을 묶어서 가져올 수 있기 때문
+
+ex)value, tagName, width, id 4개를 들고오려면
+const value = event.currentTarget.value;
+const tagName = event.currentTarget.tagName;
+const width = event.currentTarget.width;
+const id = event.currentTarget.id;
+이렇게 써야되는데 
+
+const {
+currentTarget: {value, tagName, width, id}
+} = event; 으로 깔끔하게 묶어서 쓸 수 있다.
+*/
