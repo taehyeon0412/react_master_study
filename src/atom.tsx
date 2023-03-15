@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export interface IToDo {
   text: string;
@@ -11,3 +11,20 @@ export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [], //빈 배열값을 준다
 });
+
+export const categoryState = atom({
+  key: "category",
+  default: "TO_DO",
+});
+
+export const toDoSelector = selector({
+  key: "toDoSelector",
+  get: ({ get }) => {
+    const toDos = get(toDoState);
+    const category = get(categoryState);
+
+    return toDos.filter((toDo) => toDo.category === category);
+  },
+});
+
+/*selector는 atom을 가져다가 output을 변형할 수 있다.  */
