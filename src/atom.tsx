@@ -1,8 +1,17 @@
 import { atom, selector } from "recoil";
 
+export enum Categories {
+  "TO_DO" = "TO_DO",
+  "DOING" = "DOING",
+  "DONE" = "DONE",
+}
+/* enums 
+같은 문자를 atom내에서 반복해야 할 때, 
+혹은 원하는 요소(ex. 특정 문자열)만 받고 싶을 때 고려할 수 있는 사항 */
+
 export interface IToDo {
   text: string;
-  category: "TO_DO" | "DOING" | "DONE";
+  category: Categories;
   //모든 string이 아닌 위에 3개만 선택할 수 있도록 제한사항을 줄 수 있다.
   id: number;
 }
@@ -12,9 +21,9 @@ export const toDoState = atom<IToDo[]>({
   default: [], //빈 배열값을 준다
 });
 
-export const categoryState = atom({
+export const categoryState = atom<Categories>({
   key: "category",
-  default: "TO_DO",
+  default: Categories.TO_DO,
 });
 
 export const toDoSelector = selector({
