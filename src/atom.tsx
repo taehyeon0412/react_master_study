@@ -23,6 +23,7 @@ export const toDoState = atom<IToDo[]>({
 
 export const categoryState = atom<Categories>({
   key: "category",
+
   default: Categories.TO_DO,
 });
 
