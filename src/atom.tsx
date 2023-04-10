@@ -1,4 +1,7 @@
 import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export enum Categories {
   "TO_DO" = "TO_DO",
@@ -19,12 +22,13 @@ export interface IToDo {
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [], //빈 배열값을 준다
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const categoryState = atom<Categories>({
   key: "category",
-
   default: Categories.TO_DO,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const toDoSelector = selector({
