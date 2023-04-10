@@ -1,6 +1,8 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useForm } from "react-hook-form";
 import { categoryState, toDoState } from "../atom";
+import CategoryForm from "./CategoryForm";
+import { useState } from "react";
 
 interface IForm {
   toDo: string;
@@ -15,23 +17,26 @@ function CreateToDo() {
       { text: toDo, id: Date.now(), category: category },
       ...oldToDos,
     ]);
-    //input에 값 입력하면 text에 toDo(입력값), category에는 TO_DO로 기록되고
-    //oldToDos를 대체한다 ...oldToDos 문법 외우기
-    //id: Date.now()는 랜덤값을 주기위해서 씀
-    //category: category 카테고리를 선택하면 선택한 카테고리에 바로 추가하기위해
+
     setValue("toDo", ""); //input value의 값 초기화
   };
-
+  //input에 값 입력하면 text에 toDo(입력값), category에는 TO_DO로 기록되고
+  //oldToDos를 대체한다 ...oldToDos 문법 외우기
+  //id: Date.now()는 랜덤값을 주기위해서 씀
+  //category: category 카테고리를 선택하면 선택한 카테고리에 바로 추가하기위해
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        {...register("toDo", {
-          required: "투두를 써주세요",
-        })}
-        placeholder="Write a to do"
-      ></input>
-      <button>add</button>
-    </form>
+    <>
+      <CategoryForm />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          {...register("toDo", {
+            required: "투두를 써주세요",
+          })}
+          placeholder="Write a to do"
+        ></input>
+        <button>add</button>
+      </form>
+    </>
   );
 }
 

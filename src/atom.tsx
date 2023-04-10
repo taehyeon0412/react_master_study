@@ -31,6 +31,12 @@ export const categoryState = atom<Categories>({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const boardState = atom({
+  key: "board",
+  default: {},
+  effects_UNSTABLE: [persistAtom],
+});
+
 export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
